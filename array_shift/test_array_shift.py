@@ -9,10 +9,10 @@ def test_assert_true():
 def test_insert_shift_array_even():
   """tests the shift with an even number of list elements
   """
-  initial_list = [1, 2, 3, 4]
-  new_element = 5
+  initial = [1, 2, 3, 4]
+  new = 5
   expected = [1, 2, 5, 3, 4]
-  assert insert_shift_array(initial_list, new_element) == expected
+  assert insert_shift_array(initial, new) == expected
 
 def test_insert_shift_array_odd():
   """tests the shift with an odd number of elements
