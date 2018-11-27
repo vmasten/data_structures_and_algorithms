@@ -14,4 +14,4 @@ I also accomplished the stretch goal using a similar method, but instead of appe
 Both functions run in O(N), because space and runtime depend pretty explicitly on the size of the list.
 
 ## Solution
-![](../assets/code_challenge_02.jpg)
+![](../assets/array_shift.jpg)
