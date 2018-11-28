@@ -12,10 +12,8 @@ def binary_search(list, key):
     """
     left = 0
     right = len(list)
-    print(right)
     while True:
         mid = (left + right) // 2
-        print(mid)
         if list[mid] == key:
             return mid
         if key > list[mid]:
