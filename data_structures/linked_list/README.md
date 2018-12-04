@@ -10,4 +10,4 @@ Joyce came up with the idea of using a lookahead variable to create an offset be
 As usual, the runtime will be O(N), because even though the lookahead is found before the result is calculated, the lookahead variable will only ever do as many traversals as the size of the list because of how it's set in place.
 
 ## Solution
-![]()../../assets/ll_kth_from_end.jpg
+![](../../assets/ll_kth_from_end.jpg)
