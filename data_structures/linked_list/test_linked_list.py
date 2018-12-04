@@ -3,6 +3,7 @@
 from .linked_list import LinkedList
 import pytest
 
+
 @pytest.fixture
 def empty_linked_list():
     """Empty linked list for testing."""
@@ -150,6 +151,7 @@ def test_appended_size(small_linked_list):
     actual = small_linked_list.__len__()
     assert expected == actual
 
+
 def test_insert_after(small_linked_list):
     """Test insertion after present element."""
     small_linked_list.insert_after(3, 5)
@@ -206,7 +208,7 @@ def test_insert_before_end_of_list(small_linked_list):
     """Test insertion before end of list."""
     small_linked_list.insert_before(1, 5)
 
-    expected = [4, 3, 2, 1, 5]
+    expected = [4, 3, 2, 5, 1]
     actual = []
     while small_linked_list.head:
         actual.append(small_linked_list.head.val)
@@ -217,7 +219,7 @@ def test_insert_before_end_of_list(small_linked_list):
 def test_insert_before_front_of_list(small_linked_list):
     """Test insertion before at front of list."""
     small_linked_list.insert_before(4, 5)
-    expected = [4, 5, 3, 2, 1]
+    expected = [5, 4, 3, 2, 1]
     actual = []
     while small_linked_list.head:
         actual.append(small_linked_list.head.val)

@@ -83,6 +83,7 @@ class LinkedList(object):
                     current._next = new_node
                     self._size += 1
                     inserted = True
+                    return
                     # item was found in the loop
                 current = current._next
 
@@ -91,7 +92,7 @@ class LinkedList(object):
                     current._next = new_node
                     self._size += 1
                     inserted = True
-                # item is inserted at the end of the list
+                    # item is inserted at the end of the list
 
             if inserted is False:
                 print('value to be inserted after is not in the list')
@@ -102,23 +103,23 @@ class LinkedList(object):
         if self.head:
             current = self.head
             inserted = False
+            if current.val == value:
+                new_node = Node(new_value, current)
+                self.head = new_node
+                self._size += 1
+                inserted = True
+                # item is inserted at the beginning of the list
+
             while current._next:
                 if current._next.val == value:
                     new_node = Node(new_value, current._next)
                     current._next = new_node
                     self._size += 1
                     inserted = True
+                    return
                     # item was found in the loop
                 current = current._next
 
-
-            if current._next.val == value:
-                new_node = Node(new_value, current._next)
-                current._next = new_node
-                self._size += 1
-                inserted = True
-                # item is inserted at the end of the list
-
             if inserted is False:
-                print('value to be inserted after is not in the list')
+                print('value to be inserted before is not in the list')
                 return inserted
