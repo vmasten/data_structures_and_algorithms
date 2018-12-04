@@ -123,3 +123,26 @@ class LinkedList(object):
             if inserted is False:
                 print('value to be inserted before is not in the list')
                 return inserted
+
+    def kth_from_end(self, k):
+        """Find the kth node from the end of the linked list."""
+        found = False
+        find = self.head
+        result = self.head
+        if not self.head:
+            return found
+            # list is empty
+
+        for i in range(k):
+            if find._next is None:
+                return found
+                # k invoked the lookahead to traverse too far out
+            find = find._next
+            # sets the lookahead
+
+        while find:
+            find = find._next
+            result = result._next
+            # result and find move synchronously until the lookahead reaches
+            # the end of the list
+        return result.val

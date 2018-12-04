@@ -31,6 +31,23 @@ def random_ll():
     return ll
 
 
+@pytest.fixture
+def bigger_linked_list():
+    """Slightly larger linked list for testing."""
+    ll = LinkedList()
+    ll.insert(10)
+    ll.insert(9)
+    ll.insert(8)
+    ll.insert(7)
+    ll.insert(6)
+    ll.insert(5)
+    ll.insert(4)
+    ll.insert(3)
+    ll.insert(2)
+    ll.insert(1)
+    return ll
+
+
 def test_linked_list_module_exists():
     """Proof of life."""
     assert LinkedList
@@ -232,3 +249,31 @@ def test_insert_before_wrong_element(small_linked_list):
     actual = small_linked_list.insert_before(5, 6)
     expected = False
     assert expected == actual
+
+
+def test_kth_from_end(small_linked_list):
+    """Basic test of finding kth element from the end."""
+    actual = small_linked_list.kth_from_end(2)
+    expected = 2
+    assert actual == expected
+
+
+def test_bigger_kth_from_end(bigger_linked_list):
+    """Testing with larger linked list."""
+    actual = bigger_linked_list.kth_from_end(8)
+    expected = 3
+    assert actual == expected
+
+
+def test_kth_from_end_empty(empty_linked_list):
+    """Test with empty list."""
+    actual = empty_linked_list.kth_from_end(0)
+    expected = False
+    assert actual == expected
+
+
+def test_kth_item_not_in_list(bigger_linked_list):
+    """Testing invalid input."""
+    actual = bigger_linked_list.kth_from_end(12)
+    expected = False
+    assert actual == expected
