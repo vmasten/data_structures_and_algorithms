@@ -57,3 +57,68 @@ class LinkedList(object):
                 self.head = self.head._next
 
         return result
+
+    def append(self, value):
+        """Add a node to the end of the list."""
+        if self.head:
+            current = self.head
+            while current._next:
+                current = current._next
+
+            current._next = Node(value)
+            self._size += 1
+        else:
+            # linked list was empty
+            self.insert(value)
+
+    def insert_after(self, value, new_value):
+        """Add a node after a given input value."""
+        if self.head:
+            current = self.head
+            inserted = False
+            while current._next:
+
+                if current.val == value:
+                    new_node = Node(new_value, current._next)
+                    current._next = new_node
+                    self._size += 1
+                    inserted = True
+                    # item was found in the loop
+                current = current._next
+
+            if current.val == value:
+                    new_node = Node(new_value, current._next)
+                    current._next = new_node
+                    self._size += 1
+                    inserted = True
+                # item is inserted at the end of the list
+
+            if inserted is False:
+                print('value to be inserted after is not in the list')
+                return inserted
+
+    def insert_before(self, value, new_value):
+        """Add a node before a given input value."""
+        if self.head:
+            current = self.head
+            inserted = False
+            while current._next:
+                if current._next.val == value:
+                    new_node = Node(new_value, current._next)
+                    current._next = new_node
+                    self._size += 1
+                    inserted = True
+                    # item was found in the loop
+                current = current._next
+
+
+            if current._next.val == value:
+                new_node = Node(new_value, current._next)
+                current._next = new_node
+                self._size += 1
+                inserted = True
+                # item is inserted at the end of the list
+
+            if inserted is False:
+                print('value to be inserted after is not in the list')
+                return inserted

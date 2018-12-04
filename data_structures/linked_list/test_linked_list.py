@@ -3,7 +3,6 @@
 from .linked_list import LinkedList
 import pytest
 
-
 @pytest.fixture
 def empty_linked_list():
     """Empty linked list for testing."""
@@ -119,4 +118,115 @@ def test_insertion_order(small_linked_list):
     while small_linked_list.head:
         actual.append(small_linked_list.head.val)
         small_linked_list.head = small_linked_list.head._next
+    assert expected == actual
+
+
+def test_append(small_linked_list):
+    """Tests that the append method adds nodes at end of list."""
+    small_linked_list.append(5)
+    expected = [4, 3, 2, 1, 5]
+    actual = []
+    while small_linked_list.head:
+        actual.append(small_linked_list.head.val)
+        small_linked_list.head = small_linked_list.head._next
+    assert expected == actual
+
+
+def test_append_empty(empty_linked_list):
+    """Tests that append works with an empty list."""
+    empty_linked_list.append(4)
+    expected = [4]
+    actual = []
+    while empty_linked_list.head:
+        actual.append(empty_linked_list.head.val)
+        empty_linked_list.head = empty_linked_list.head._next
+    assert expected == actual
+
+
+def test_appended_size(small_linked_list):
+    """Test that size is incrementing correctly on append."""
+    small_linked_list.append(5)
+    expected = 5
+    actual = small_linked_list.__len__()
+    assert expected == actual
+
+def test_insert_after(small_linked_list):
+    """Test insertion after present element."""
+    small_linked_list.insert_after(3, 5)
+    expected = [4, 3, 5, 2, 1]
+    actual = []
+    while small_linked_list.head:
+        actual.append(small_linked_list.head.val)
+        small_linked_list.head = small_linked_list.head._next
+    assert expected == actual
+
+
+def test_insert_after_end_of_list(small_linked_list):
+    """Test insertion at end of list."""
+    small_linked_list.insert_after(1, 5)
+
+    expected = [4, 3, 2, 1, 5]
+    actual = []
+    while small_linked_list.head:
+        actual.append(small_linked_list.head.val)
+        small_linked_list.head = small_linked_list.head._next
+    assert expected == actual
+
+
+def test_insert_after_front_of_list(small_linked_list):
+    """Test insertion at front of list."""
+    small_linked_list.insert_after(4, 5)
+    expected = [4, 5, 3, 2, 1]
+    actual = []
+    while small_linked_list.head:
+        actual.append(small_linked_list.head.val)
+        small_linked_list.head = small_linked_list.head._next
+    assert expected == actual
+
+
+def test_insert_after_wrong_element(small_linked_list):
+    """Tests insertion after a nonexistent element."""
+    actual = small_linked_list.insert_after(5, 6)
+    expected = False
+    assert expected == actual
+
+
+def test_insert_before(small_linked_list):
+    """Test insertion before present element."""
+    small_linked_list.insert_before(3, 5)
+    expected = [4, 5, 3, 2, 1]
+    actual = []
+    while small_linked_list.head:
+        actual.append(small_linked_list.head.val)
+        small_linked_list.head = small_linked_list.head._next
+    assert expected == actual
+
+
+def test_insert_before_end_of_list(small_linked_list):
+    """Test insertion before end of list."""
+    small_linked_list.insert_before(1, 5)
+
+    expected = [4, 3, 2, 1, 5]
+    actual = []
+    while small_linked_list.head:
+        actual.append(small_linked_list.head.val)
+        small_linked_list.head = small_linked_list.head._next
+    assert expected == actual
+
+
+def test_insert_before_front_of_list(small_linked_list):
+    """Test insertion before at front of list."""
+    small_linked_list.insert_before(4, 5)
+    expected = [4, 5, 3, 2, 1]
+    actual = []
+    while small_linked_list.head:
+        actual.append(small_linked_list.head.val)
+        small_linked_list.head = small_linked_list.head._next
+    assert expected == actual
+
+
+def test_insert_before_wrong_element(small_linked_list):
+    """Tests insertion before a nonexistent element."""
+    actual = small_linked_list.insert_before(5, 6)
+    expected = False
     assert expected == actual
