@@ -1,13 +1,14 @@
-# kth from the end of a Linked List
-An exercise to extend the existing linked list module that allows for finding the element at the kth node from the end of the list.
+# Merge two Linked Lists
+Write a function called merge_lists which takes two linked lists as arguments. Zip the two linked lists together into one so that the nodes alternate between the two lists and return a reference to the head of the zipped list.
 
 ## Challenge
-This task must be accomplished by extending the predefined linked list and node classes, and may not use the __len__ function.
+Try and keep additional space down to O(1). You have access to the Node class and all the properties on the Linked List class as well as the methods created in previous challenges.
+
 
 ## Approach & Efficiency
-Joyce came up with the idea of using a lookahead variable to create an offset between the head of the list and the number of elements from the end we're looking for. Matt and I interrogated and refined the method to deal with edge cases and coalesce the concept into working code.
+I initially thought that this would be best accomlished by a while loop, as seen in the whiteboarding with Joyce and Toby, but when it came time to implement it, for loops worked better, because I was working with already-made lists with a size, which made a good range for a loop. I used a series of if statements to test whether one or the other list is empty, and to compensate for one list being larger than the other.
 
-As usual, the runtime will be O(N), because even though the lookahead is found before the result is calculated, the lookahead variable will only ever do as many traversals as the size of the list because of how it's set in place.
+I don't think my additions run in O(1) time, because the length of the loop (and therefore runtime) is determined by the size of the larger list being passed in. I'm not sure how I could've refactored to be more efficient.
 
 ## Solution
-![]()../../assets/ll_kth_from_end.jpeg
+![](../../ll_merge.jpeg)
