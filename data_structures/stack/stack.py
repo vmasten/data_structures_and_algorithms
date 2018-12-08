@@ -7,8 +7,8 @@ class Stack(object):
     """Class to implement a stack in Python."""
 
     """
-    __init__ initializes an empty list.
-    __len__ returns the current size of the list.
+    __init__ initializes an empty stack.
+    __len__ returns the current size of the stack.
     __str__ returns a string with the top value in friendly format.
     __repr__ returns a string with the top node for debugging.
     push() adds a node to the top of the stack.
