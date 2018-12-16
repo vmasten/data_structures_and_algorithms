@@ -1,0 +1,3 @@
+[run]
+include = bst.py
+omit = binary_search_tree/test*
