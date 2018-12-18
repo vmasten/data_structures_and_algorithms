@@ -174,3 +174,26 @@ def test_bst_traversals_post(test_bst):
     expected = [5, 9, 8, 11, 20, 10]
     actual = test_bst.post_order(test_bst.root, test_bst.enlist)
     assert actual == expected
+
+
+def test_bst_breadth_first(test_bst):
+    """Test BST breadth-first traversal order."""
+    test_bst.traversal_list = []
+    expected = [10, 8, 20, 5, 9, 11]
+    actual = test_bst.breadth_first_search(test_bst.root, test_bst.enlist)
+    assert actual == expected
+
+
+def test_small_bst_breadth_first(small_bst):
+    """Another test of breadth-first traversal order."""
+    small_bst.traversal_list = []
+    expected = [5, 1, 40, 32, 9]
+    actual = small_bst.breadth_first_search(small_bst.root, small_bst.enlist)
+    assert actual == expected
+
+
+def test_empty_bst(empty_bst):
+    """See what happens when an empty BST is passed in."""
+    expected = [None]
+    actual = empty_bst.breadth_first_search(empty_bst.root, empty_bst.enlist)
+    assert expected == actual

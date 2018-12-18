@@ -64,8 +64,9 @@ class Queue(object):
             old_front = self.front
             self.front = old_front.next_node
             old_front.next_node = None
+            self._size -= 1
 
             return old_front
 
         if not self.front:
-            return 'Queue is empty!'
+            return 'Stack is empty!'

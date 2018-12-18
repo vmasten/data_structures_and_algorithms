@@ -1,4 +1,5 @@
 """Module to implement a binary search tree."""
+from ..stack.queue import Queue
 
 
 class Node(object):
@@ -117,5 +118,22 @@ class BST(object):
 
         self.enlist(node, self.traversal_list)
         # Read the node itself
+
+        return self.traversal_list
+
+    def breadth_first_search(self, node, enlist):
+        """Breadth-first traversal for the BST."""
+        queue = Queue()
+        queue.enqueue(node)
+
+        while queue.front:
+            front = queue.dequeue()
+
+            self.enlist(front.val, self.traversal_list)
+
+            if front.val.left is not None:
+                queue.enqueue(front.val.left)
+            if front.val.right is not None:
+                queue.enqueue(front.val.right)
 
         return self.traversal_list
