@@ -197,3 +197,24 @@ def test_empty_bst(empty_bst):
     expected = [None]
     actual = empty_bst.breadth_first_search(empty_bst.root, empty_bst.enlist)
     assert expected == actual
+
+
+def test_max_value(small_bst):
+    """Test the maximum value function using a breadth-first search."""
+    expected = 40
+    actual = small_bst.breadth_first_search(small_bst.root, small_bst.find_maximum_value_binary_tree)
+    assert expected == actual
+
+
+def test_max_value_post_order_traversal(test_bst):
+    """Test the maximum value function using a post-order depth-first search."""
+    expected = 20
+    actual = test_bst.post_order(test_bst.root, test_bst.find_maximum_value_binary_tree)
+    assert expected == actual
+
+
+def test_max_value_empty_bst(empty_bst):
+    """Test passing in an empty tree to the maximum value function."""
+    expected = None
+    actual = empty_bst.breadth_first_search(empty_bst.root, empty_bst.find_maximum_value_binary_tree)
+    assert expected == actual

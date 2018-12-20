@@ -5,7 +5,7 @@ from ..stack.queue import Queue
 class Node(object):
     """Building block to create binary search trees."""
 
-    def __init__(self, val, left=None, right=None):
+    def __init__(self, val=None, left=None, right=None):
         """Initialize node object."""
         self.left = left
         self.right = right
@@ -25,10 +25,11 @@ class Node(object):
 class BST(object):
     """Binary search tree data structure."""
 
-    def __init__(self, iterable=None, traversal_list=[]):
+    def __init__(self, iterable=None, traversal_list=[], max=None):
         """Initialize BST."""
-        self.root = Node(val=None)
+        self.root = Node()
         self.traversal_list = traversal_list
+        self.max = max
 
         if iterable is None:
             iterable = []
@@ -74,54 +75,54 @@ class BST(object):
                 self.insert(val, node.right)
                 # Try again with the child's left node
 
-    def enlist(self, node, traversal_list):
+    def enlist(self, node):
         """Helper method for building lists during BST traversals."""
         self.traversal_list.append(node.val)
+        return self.traversal_list
 
-    def pre_order(self, node, enlist):
+    def pre_order(self, node, operation):
         """Traverse the BST in pre order."""
-        self.enlist(node, self.traversal_list)
+        result = operation(node)
         # Read the node itself first
 
         if node.left is not None:
-            self.pre_order(node.left, self.traversal_list)
+            self.pre_order(node.left, operation)
         if node.right is not None:
-            self.pre_order(node.right, self.traversal_list)
+            self.pre_order(node.right, operation)
             # Read the left child, and then the right child
+        # print(result)
+        return result
 
-        return self.traversal_list
-
-    def in_order(self, node, enlist):
+    def in_order(self, node, operation):
         """Traverse the BST in order."""
         if node.left is not None:
-            self.in_order(node.left, self.traversal_list)
+            self.in_order(node.left, operation)
             # Read the left child
 
-        self.enlist(node, self.traversal_list)
+        result = operation(node)
         # Read the node itself
 
         if node.right is not None:
-            self.in_order(node.right, self.traversal_list)
+            self.in_order(node.right, operation)
             # Read the right child
 
-        return self.traversal_list
+        return result
 
-    def post_order(self, node, enlist):
+    def post_order(self, node, operation):
         """Traverse the BST in post order."""
         if node.left is not None:
-            self.post_order(node.left, self.traversal_list)
+            self.post_order(node.left, operation)
             # Read the left child
 
         if node.right is not None:
-            self.post_order(node.right, self.traversal_list)
+            self.post_order(node.right, operation)
             # Read the right child
 
-        self.enlist(node, self.traversal_list)
+        result = operation(node)
         # Read the node itself
+        return result
 
-        return self.traversal_list
-
-    def breadth_first_search(self, node, enlist):
+    def breadth_first_search(self, node, operation):
         """Breadth-first traversal for the BST."""
         queue = Queue()
         queue.enqueue(node)
@@ -129,11 +130,23 @@ class BST(object):
         while queue.front:
             front = queue.dequeue()
 
-            self.enlist(front.val, self.traversal_list)
+            result = operation(front.val)
 
             if front.val.left is not None:
                 queue.enqueue(front.val.left)
             if front.val.right is not None:
                 queue.enqueue(front.val.right)
 
-        return self.traversal_list
+        return result
+
+    def find_maximum_value_binary_tree(self, node):
+        if not node.val:
+            return None
+
+        if not self.max:
+            self.max = node.val
+
+        if self.max < node.val:
+            self.max = node.val
+
+        return self.max
