@@ -2,39 +2,38 @@
 
 
 class Graph:
-    """
-    """
+    """Implements a graph data structure via a class."""
+
     def __init__(self):
+        """Initialize an empty graph."""
         self.graph = {}
 
     def __repr__(self):
+        """Magic method for debugging."""
         output = f'<Graph: - {self.graph}>'
         return output
 
     def __str__(self):
+        """Magic method to return an fstring of the graph's root."""
         output = f'Graph: - {self.graph}'
         return output
 
     def __len__(self):
+        """Return the length of the graph."""
         return len(self.graph)
 
     def add_vert(self, val):
-        """
-        """
+        """Add a vertex to the graph."""
         if self.has_vert(val):
             return self.graph
+            # if the vertex exists, don't do anything
 
         self.graph[val] = {}
         return self.graph
-
-        # add vertice to self.graph
-        # check to see if the vert already exists: if so raise exception
-        # create a helper method
-        # return self
+        # otherwise, add the new vertex and return the modified graph
 
     def has_vert(self, val):
-        """
-        """
+        """Check whether an input vertex exists in the graph."""
         result = False
 
         if val in self.graph:
@@ -48,24 +47,20 @@ class Graph:
         # returns vertex or bool
 
     def add_edge(self, v1, v2, weight):
-        """
-        """
-        # add a relationship and weight between two verts
-        # don't forget to validate
-        # returns self
+        """Add an edge between two vertices."""
         if self.has_vert(v1) and self.has_vert(v2):
+            # both vertices exist
 
             self.graph[v1][v2] = weight
             self.graph[v2][v1] = weight
+            # create new edge between the vertices with the input weight
 
         return self.graph
 
-
-
     def get_neighbors(self, val):
-        """
-        """
+        """Get all neighbors of an input vertex."""
         if self.has_vert(val):
-            return self.graph[val]
-        # Given a val (key), return all adjacent verts
-        # returns tuple of vals
+            result = list(self.graph[val].keys())
+            # cast the dictionary keys to a list
+
+            return result

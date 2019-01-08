@@ -1,15 +1,18 @@
+"""Fixtures for testing graph implementation."""
 import pytest
 from .graph import Graph
 
 
 @pytest.fixture()
 def graph_empty():
+    """Empty graph for testing."""
     g = Graph()
     return g
 
 
 @pytest.fixture()
 def graph_one():
+    """Graph of vertices and weights for testing."""
     g = Graph()
     g.graph = {
         # value: weight
@@ -25,6 +28,7 @@ def graph_one():
 
 @pytest.fixture()
 def graph_two():
+    """Second graph with different vertices and weights for testing."""
     g = Graph()
     g.graph = {
         'A': {'B': 10, 'C': 15},

@@ -1,4 +1,5 @@
 """Tests for graph implementation."""
+from .breadth_first.breadth_first import breadth_first_traversal
 
 
 def test_graph_instantiation(graph_one):
@@ -58,7 +59,25 @@ def test_add_edge(graph_one):
     graph_one.add_edge('A', 'Z', 5)
     print(graph_one)
 
-def test_get_neightbors(graph_one):
-    """Test get neighbors function."""
-    print(graph_one.get_neighbors('A'))
 
+def test_get_neighbors(graph_one):
+    """Test get neighbors function."""
+    expected = ['A', 'D', 'C']
+    actual = graph_one.get_neighbors('B')
+    assert expected == actual
+
+
+def test_breadth_first(graph_one, capsys):
+    """Test breadth-first traversal."""
+    expected = 'A, B, D, C, E, F\n'
+    breadth_first_traversal(graph_one, 'A')
+    out, err = capsys.readouterr()
+    actual = out
+    assert expected == actual
+
+
+def test_breadth_first_again(graph_two):
+    """Test breadth-first traversal return."""
+    expected = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+    actual = breadth_first_traversal(graph_two, 'A')
+    assert expected == actual
