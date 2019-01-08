@@ -40,3 +40,17 @@ def graph_two():
         'G': {'F': 20}
     }
     return g
+
+
+@pytest.fixture()
+def city_graph():
+    """Graph to simulate cost to travel between cities."""
+    g = Graph()
+    g.graph = {
+        'Seattle': {'SF': 50, 'NY': 200},
+        'SF': {'Seattle': 50, 'LA': 25},
+        'LA': {'SF': 25, 'Houston': 75},
+        'Houston': {'LA': 75, 'NY': 100},
+        'NY': {'Houston': 100, 'Seattle': 200},
+    }
+    return g
