@@ -11,4 +11,4 @@ I initially thought that this would be best accomlished by a while loop, as seen
 I don't think my additions run in O(1) time, because the length of the loop (and therefore runtime) is determined by the size of the larger list being passed in. I'm not sure how I could've refactored to be more efficient.
 
 ## Solution
-![](../../ll_merge.jpeg)
+![](../../assets/ll_merge.jpeg)
