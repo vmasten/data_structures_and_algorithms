@@ -1,6 +1,6 @@
 """Implement a singly linked list in Python."""
 
-from .node import Node
+from ..node.node import Node
 
 
 class LinkedList(object):
