@@ -1,6 +1,8 @@
 """Tests for graph implementation."""
 from .breadth_first.breadth_first import breadth_first_traversal
 from .get_edge.get_edge import get_edges
+from .depth_first.depth_first import depth_first
+import pytest
 
 
 def test_graph_instantiation(graph_one):
@@ -127,3 +129,22 @@ def test_multi_hop_invalid(city_graph):
     expected = (False, '$0')
     actual = get_edges(city_graph, test_cities)
     assert expected == actual
+
+
+def test_dfs(graph_one):
+    """Test the depth-first search."""
+    result = depth_first(graph_one, 'A')
+    print(result)
+
+
+def test_dfs_with_sample(df_graph):
+    """Test depth-first search with a known graph/result."""
+    result = depth_first(df_graph, 'A')
+    print(result)
+
+
+def test_dfs_empty_graph_error(graph_empty):
+    """Make sure errors are thrown correctly on bad input."""
+    with pytest.raises(KeyError):
+        depth_first(graph_empty, '')
+
