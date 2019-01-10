@@ -54,3 +54,19 @@ def city_graph():
         'NY': {'Houston': 100, 'Seattle': 200},
     }
     return g
+
+@pytest.fixture()
+def df_graph():
+    """A graph to emulate the sample to test DFS."""
+    g = Graph()
+    g.graph = {
+        'A': {'B': 1, 'D': 2},
+        'B': {'C': 2, 'D': 4},
+        'C': {'G': 3},
+        'D': {'E': 2, 'F': 4, 'H': 6},
+        'E': {'D': 2},
+        'F': {'H': 3, 'F': 6},
+        'G': {'C': 2},
+        'H': {'D': 5, 'F': 10},
+    }
+    return g
