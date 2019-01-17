@@ -71,3 +71,14 @@ def test_str_setter(str_hash_table):
     expected = 'best'
     actual = str_hash_table.getter('wolf')
     assert expected == actual
+
+
+def test_entries(very_simple_hash_table):
+    """Test whether entries increment properly."""
+    assert very_simple_hash_table.entries == 3
+
+
+def test_entries_remove_and_add(very_simple_hash_table):
+    """Test whether entries decrements/increments on key replacement."""
+    very_simple_hash_table.setter('blue', '255')
+    assert very_simple_hash_table.entries == 3
