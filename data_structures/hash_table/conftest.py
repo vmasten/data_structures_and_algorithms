@@ -14,9 +14,9 @@ def empty_hash_table():
 def very_simple_hash_table():
     """Hash table for testing."""
     h = HashTable()
-    h.setter(2)
-    h.setter(5)
-    h.setter(7)
+    h.setter('blue', '2')
+    h.setter('red', 5)
+    h.setter('green', 7)
     return h
 
 
@@ -24,7 +24,7 @@ def very_simple_hash_table():
 def str_hash_table():
     """Hash table made up of strings for testing."""
     h = HashTable()
-    h.setter('cat')
-    h.setter('dog')
-    h.setter('catdog')
+    h.setter('cat', 'bad')
+    h.setter('dog', 'good')
+    h.setter('catdog', 'badgood')
     return h
