@@ -6,11 +6,15 @@ class HashTable(object):
 
     def __init__(self):
         """Instantiate the hash table."""
-        self.hash_table = [None]*11
+        self.hash_table = [[] for i in range(8192)]
 
     def __len__(self):
         """Get the length of the hash table."""
         return len(self.hash_table)
+
+    def __repr__(self):
+        """Return dev-friendly detail about the hash table."""
+        return "<HashTable: {}>".format(self.hash_table)
 
     def hash(self, val):
         """Helper to hash a value before it is added to the table."""
@@ -22,26 +26,18 @@ class HashTable(object):
                 sum += ord(val[i])
             return sum % len(self.hash_table)
 
-    def setter(self, val):
+    def setter(self, key, val):
         """Use the hash helper function to add a value to the table."""
-        hashed = self.hash(val)
-        if self.hash_table[hashed] is None:
-            self.hash_table[hashed] = val
-        elif type(self.hash_table[hashed]) != list:
-            chain = []
-            chain.append(self.hash_table[hashed])
-            chain.append(val)
-            self.hash_table[hashed] = chain
-        else:
-            self.hash_table[hashed].append(val)
+        hashed = self.hash(key)
+        for i, item in enumerate(self.hash_table[hashed]):
+            if item[0] == key:
+                del self.hash_table[hashed][i]
+        self.hash_table[hashed].append((key, val))
 
-    def getter(self, val):
-        """Get a value if it exists in the table. Returns True if found."""
-        hashed = self.hash(val)
-        if self.hash_table[hashed] == val:
-            return True
-        elif type(self.hash_table[hashed]) == list:
-            for i in range(len(self.hash_table[hashed])):
-                if self.hash_table[hashed][i] == val:
-                    return True
-        return False
+    def getter(self, key):
+        """Get a value if it exists in the table."""
+        hashed = self.hash(key)
+        for i, item in enumerate(self.hash_table[hashed]):
+            if item[0] == key:
+                return item[1]
+        raise KeyError('Key not in hash table.')
