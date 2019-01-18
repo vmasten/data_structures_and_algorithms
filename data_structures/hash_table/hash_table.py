@@ -3,6 +3,7 @@
 
 class HashTable(object):
     """Implements a basic hash table that can take in strings and integers."""
+    entries = 0
 
     def __init__(self):
         """Instantiate the hash table."""
@@ -27,12 +28,14 @@ class HashTable(object):
             return sum % len(self.hash_table)
 
     def setter(self, key, val):
-        """Use the hash helper function to add a value to the table."""
+        """Use the hash helper function to add a key/value to the table."""
         hashed = self.hash(key)
         for i, item in enumerate(self.hash_table[hashed]):
             if item[0] == key:
                 del self.hash_table[hashed][i]
+                self.entries -= 1
         self.hash_table[hashed].append((key, val))
+        self.entries += 1
 
     def getter(self, key):
         """Get a value if it exists in the table."""
